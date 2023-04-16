@@ -1,0 +1,35 @@
+.green {
+    display: inline-block;
+    background-color: green;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.yellow {
+    display: inline-block;
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.blue {
+    display: inline-block;
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 5px;
+ }
+
+ .gray {
+    display: inline-block;
+    background-color: gray;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    margin: 5px;
+ }
