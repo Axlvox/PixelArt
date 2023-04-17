@@ -33,3 +33,12 @@
     border: 1px solid black;
     margin: 5px;
  }
+
+ .pixel {
+    display: inline-block;
+    background-color: #ffffff;
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;
+    margin: 5px;
+ }
