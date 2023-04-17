@@ -34,6 +34,13 @@
     margin: 5px;
  }
 
+#pixel-board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-top: 10px;
+}
+
  .pixel {
     display: inline-block;
     background-color: #ffffff;
