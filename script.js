@@ -1,7 +1,8 @@
 const cor = document.getElementById('color-palette');
-let button2 = document.querySelectorAll('.dois');
-let button3 = document.getElementsByClassName('color tres');
-let button4 = document.getElementsByClassName('color quatro');
+let button1 = document.getElementsByClassName('um');
+let button2 = document.getElementsByClassName('dois');
+let button3 = document.getElementsByClassName('tres');
+let button4 = document.getElementsByClassName('quatro');
 
 function gerarCorAleatoria() {
     let red = Math.floor(Math.random() * 255);
@@ -61,7 +62,7 @@ const button = document.querySelector('#button-random-color');
 button.addEventListener('click', corAleatoria);
 
 function cookieColor () {
-const capturaCores = document.querySelectorAll('.dois, .color.tres, .color.quatro');
+const capturaCores = document.querySelectorAll('.dois, .tres, .quatro');
 let cores = [];
 for (let index = 0; index < capturaCores.length; index += 1) {
     cores.push(capturaCores[index].style.backgroundColor);
@@ -69,3 +70,18 @@ for (let index = 0; index < capturaCores.length; index += 1) {
     return cores;
 }
 
+function corInicial () {
+let paleta = document.querySelectorAll('.button');
+    for (let index = 0; index < paleta.length; index += 1) {
+    if (window.getComputedStyle(paleta[index]).backgroundColor === 'rgb(0, 0, 0)') {
+        paleta[index].classList.add('selected');
+
+} else {
+    paleta[index].classList.remove('selected');
+}
+}
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+corInicial();
+});
