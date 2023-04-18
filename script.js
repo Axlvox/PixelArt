@@ -71,7 +71,7 @@ for (let index = 0; index < capturaCores.length; index += 1) {
 }
 
 function corInicial () {
-let paleta = document.querySelectorAll('.button');
+let paleta = document.querySelectorAll('.um.dois.tres.quatro');
     for (let index = 0; index < paleta.length; index += 1) {
     if (window.getComputedStyle(paleta[index]).backgroundColor === 'rgb(0, 0, 0)') {
         paleta[index].classList.add('selected');
@@ -85,3 +85,23 @@ let paleta = document.querySelectorAll('.button');
 document.addEventListener('DOMContentLoaded', function() {
 corInicial();
 });
+
+function select (event) {
+    const botao = event.target;
+    const botoes = document.querySelectorAll('.um, .dois, .tres, .quatro');
+
+    for (let index = 0; index < botoes.length; index += 1) {
+        botoes[index].classList.remove('selected');
+  }
+  botao.classList.add('selected');
+  }
+    const botoes = document.querySelectorAll('.um, .dois, .tres, .quatro');
+    for (let index = 0; index < botoes.length; index += 1) {
+  botoes[index].addEventListener('click', select)
+  }
+
+document.addEventListener('click', function(event) {
+if (event.target.matches('.button')) {
+    select(event);
+    }
+ });
