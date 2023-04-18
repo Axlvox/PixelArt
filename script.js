@@ -1,3 +1,5 @@
+window.onload = function(){
+    
 const cor = document.getElementById('color-palette');
 let button1 = document.getElementsByClassName('um');
 let button2 = document.getElementsByClassName('dois');
@@ -12,6 +14,14 @@ function gerarCorAleatoria() {
 }
 
 function corAleatoria () {
+    for (let index = 0; index < button1.length; index += 1) {
+    if (button1[index].style.backgroundColor !== 'rgb(0, 0, 0)') {
+    button1[index].style.backgroundColor = 'rgb(0, 0, 0)';
+    } else {
+    button1[index].style.backgroundColor = 'rgb(0, 0, 0)';
+    }
+}
+
     for (let index = 0; index < button2.length; index += 1) {
     if (button2[index].style.backgroundColor !== 'rgb(0, 0, 0)') {
     button2[index].style.backgroundColor = gerarCorAleatoria();
@@ -44,25 +54,27 @@ console.log(recoveryStorage);
 const coresSalvas = JSON.parse(localStorage.getItem('colorPalette'));
 
 if (coresSalvas) {
+    for (let index = 0; index < button1.length; index += 1) {
+        button1[index].style.backgroundColor = coresSalvas[index];
+    }
     for (let index = 0; index < button2.length; index += 1) {
-        button2[index].style.backgroundColor = coresSalvas[index];
+        button2[index].style.backgroundColor = coresSalvas[index + button2.length];
     }
 
     for (let index = 0; index < button3.length; index += 1) {
-        button3[index].style.backgroundColor = coresSalvas[index + button2.length];
+        button3[index].style.backgroundColor = coresSalvas[index + button2.length + button3.length];
     }
 
     for (let index = 0; index < button4.length; index += 1) {
-        button4[index].style.backgroundColor = coresSalvas[index + button2.length + button3.length];
+        button4[index].style.backgroundColor = coresSalvas[index + button2.length + button3.length + button4.length];
     }
 }
-
 
 const button = document.querySelector('#button-random-color');
 button.addEventListener('click', corAleatoria);
 
 function cookieColor () {
-const capturaCores = document.querySelectorAll('.dois, .tres, .quatro');
+const capturaCores = document.querySelectorAll('.um, .dois, .tres, .quatro');
 let cores = [];
 for (let index = 0; index < capturaCores.length; index += 1) {
     cores.push(capturaCores[index].style.backgroundColor);
@@ -81,7 +93,7 @@ let paleta = document.querySelectorAll('.um.dois.tres.quatro');
 }
 }
 }
-
+document.querySelector('.um').classList.add('selected');
 document.addEventListener('DOMContentLoaded', function() {
 corInicial();
 });
@@ -105,3 +117,59 @@ if (event.target.matches('.button')) {
     select(event);
     }
  });
+
+function selectPixel (event) {
+    const pixel = event.target;
+    const pixels = document.querySelectorAll('.pixel');
+
+    for (let index = 0; index < pixels.length; index += 1) {
+        pixels[index].classList.remove('selectColor');
+  }
+  pixel.classList.add('selectedColor');
+  }
+    const pixels = document.querySelectorAll('.pixel');
+    for (let index = 0; index < pixels.length; index += 1) {
+  pixels[index].addEventListener('click', selectPixel)
+  }
+
+document.addEventListener('click', function(event) {
+if (event.target.matches('.button')) {
+    selectPixel(event);
+    }
+ });
+
+let colorSelec = document.querySelectorAll('.color');
+let pixelSelec = document.querySelectorAll('#pixel-board .pixel');
+
+function pickColor(event) {
+  let selectedColor = document.querySelector('.selected');
+  selectedColor.classList.remove('selected');
+  event.target.classList.add('selected');
+}
+
+function colorPixel(event) {
+  let selectedColor = document.querySelector('.selected').style.backgroundColor;
+  event.target.style.backgroundColor = selectedColor;
+}
+
+for (let index = 0; index < colorSelec.length; index += 1) {
+  colorSelec[index].addEventListener('click', pickColor);
+}
+
+for (let index = 0; index < pixelSelec.length; index += 1) {
+  pixelSelec[index].addEventListener('click', colorPixel);
+}
+
+function pixelWhite() {
+    let pixel = document.querySelectorAll('.pixel');
+         for (let index = 0; index < pixel.length; index += 1) {
+            pixel[index].style.backgroundColor = 'rgb(255, 255, 255)';
+}
+}
+
+const clear = document.querySelector('#clear-board');
+clear.addEventListener('click', function() {
+pixelWhite();
+});
+
+}
