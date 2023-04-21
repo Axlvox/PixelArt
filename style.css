@@ -1,3 +1,5 @@
+/* Requisito 2 (Adicione à página uma paleta contendo quatro cores distintas)*/
+/* Requisito 3 (Adicione a cor preta como a primeira cor da paleta de cores) */
 .um {
     display: inline-block;
     background-color: rgb(0, 0, 0);
@@ -38,9 +40,10 @@
     display: flex;
     flex-wrap: wrap;
     width: 300px;
+    height: 280px;
     margin-top: 10px;
 }
-
+/* Requisito 7 (Faça com que cada pixel do quadro tenha largura e altura de 40 pixels e borda preta de 1 pixel de espessura)*/
  .pixel {
     display: inline-block;
     background-color: rgb(255, 255, 255);

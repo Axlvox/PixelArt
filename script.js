@@ -6,14 +6,6 @@ let button2 = document.getElementsByClassName('dois');
 let button3 = document.getElementsByClassName('tres');
 let button4 = document.getElementsByClassName('quatro');
 
-
-// function geraCor () {
-//     button1.style.backgroundColor = rgb(0, 0, 0);
-//     button2.style.backgroundColor = rgb(255, 0, 0);
-//     button3.style.backgroundColor = rgb(0, 255, 0);
-//     button4.style.backgroundColor = rgb(0, 0, 255);
-// }
-
 function geraCorInicial() {
     const pixels = document.querySelectorAll('.um, .dois, .tres, .quatro');
 
@@ -35,11 +27,6 @@ function geraCorInicial() {
     }
 }
 geraCorInicial();
-// const corModel = document.querySelector('#pixel-board');
-// corModel.addEventListener('click', function() {
-// geraCorInicial();
-// });
-
 
 function gerarCorAleatoria() {
     let red = Math.floor(Math.random() * 255);
@@ -47,7 +34,7 @@ function gerarCorAleatoria() {
     let blue = Math.floor(Math.random() * 255);
     return 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
-
+// Requisito 4 (Adicione um botão para gerar cores aleatórias para a paleta de cores)
 function corAleatoria () {
     for (let index = 0; index < button1.length; index += 1) {
     if (button1[index].style.backgroundColor !== 'rgb(0, 0, 0)') {
@@ -81,6 +68,7 @@ for (let index = 0; index < button4.length; index += 1) {
     }
 }
 cores = cookieColor();
+// Requisito 5 ( Implemente uma função usando localStorage para que a paleta de cores gerada aleatoriamente seja mantida após recarregar a página)
 localStorage.setItem('colorPalette', JSON.stringify(cores));
 let recoveryStorage = JSON.parse(localStorage.getItem('colorPalette'));
 console.log(recoveryStorage);
@@ -116,6 +104,13 @@ for (let index = 0; index < capturaCores.length; index += 1) {
 }
     return cores;
 }
+// Requisito 6 (Adicione à página um quadro contendo 25 pixels)
+const pixelBoard = document.getElementById('pixel-board');
+for (let index = 0; index < 25; index++) {
+    const pixel = document.createElement('div');
+    pixel.classList.add('pixel');
+    pixelBoard.appendChild(pixel);
+}
 
 function corInicial () {
 let paleta = document.querySelectorAll('.um.dois.tres.quatro');
@@ -128,12 +123,13 @@ let paleta = document.querySelectorAll('.um.dois.tres.quatro');
 }
 }
 }
+// Requisito 8 (Defina a cor preta como cor inicial da paleta de cores)
 document.querySelector('.um').classList.add('selected');
 document.addEventListener('DOMContentLoaded', function() {
     geraCorInicial();
     corInicial();
 });
-
+// Requisito 9 (Crie uma função para selecionar uma cor na paleta de cores)
 function select (event) {
     const botao = event.target;
     const botoes = document.querySelectorAll('.um, .dois, .tres, .quatro');
@@ -147,7 +143,7 @@ function select (event) {
     for (let index = 0; index < botoes.length; index += 1) {
   botoes[index].addEventListener('click', select)
   }
-
+// Requisito 10 (Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores)
 function selectPixel (event) {
     const pixel = event.target;
     const pixels = document.querySelectorAll('.pixel');
@@ -189,7 +185,7 @@ for (let index = 0; index < colorSelec.length; index += 1) {
 for (let index = 0; index < pixelSelec.length; index += 1) {
   pixelSelec[index].addEventListener('click', colorPixel);
 }
-
+// Requisito 11 (Crie um botão que retorne a cor do quadro para a cor inicial)
 function pixelWhite() {
     let pixel = document.querySelectorAll('.pixel');
          for (let index = 0; index < pixel.length; index += 1) {
