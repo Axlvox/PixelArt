@@ -152,17 +152,45 @@ function selectPixel (event) {
         pixels[index].classList.remove('selectColor');
   }
   pixel.classList.add('selectedColor');
-  }
+// Requisito 12 (Crie uma função para salvar e recuperar o seu desenho atual no localStorage)  
+    const pixelz = cookiePixel();
+    if (!pixelz.includes(pixel.style.backgroundColor)) {
+        pixelz.push(pixel.style.backgroundColor);
+    }
+    if (pixel !== pixels[pixels.length -1] && !pixelz.includes(pixel.style.backgroundColor)) {
+        pixelz.push(pixel.style.backgroundColor);
+    }
+        localStorage.setItem('pixelBoard', JSON.stringify(pixelz));
+    }
+
     const pixels = document.querySelectorAll('.pixel');
     for (let index = 0; index < pixels.length; index += 1) {
-  pixels[index].addEventListener('click', selectPixel)
+  pixels[index].addEventListener('click', selectPixel);
+    }
+  
+  const pixelSalvo = JSON.parse(localStorage.getItem('pixelBoard'));
+  if (pixelSalvo) {
+      for (let index = 0; index < pixels.length; index += 1) {
+          pixels[index].style.backgroundColor = pixelSalvo[index];
+      }
   }
 
 document.addEventListener('click', function(event) {
 if (event.target.matches('.button')) {
     selectPixel(event);
+    } else if (event.target.matches('.pixel')) {
+    selectPixel(event);
     }
  });
+
+ function cookiePixel () {
+    const capturaPixel = document.querySelectorAll('.pixel');
+    let pixelz = [];
+    for (let index = 0; index < capturaPixel.length; index += 1) {
+        pixelz.push(capturaPixel[index].style.backgroundColor);
+    }
+        return pixelz;
+    }
 
 let colorSelec = document.querySelectorAll('.color');
 let pixelSelec = document.querySelectorAll('.pixel');
@@ -200,3 +228,8 @@ pixelWhite();
 
 
 }
+
+
+
+
+
