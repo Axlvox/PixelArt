@@ -1,10 +1,45 @@
 window.onload = function(){
     
-const cor = document.getElementById('color-palette');
+const cor = document.querySelectorAll('.um, .dois, .tres, .quatro');
 let button1 = document.getElementsByClassName('um');
 let button2 = document.getElementsByClassName('dois');
 let button3 = document.getElementsByClassName('tres');
 let button4 = document.getElementsByClassName('quatro');
+
+
+// function geraCor () {
+//     button1.style.backgroundColor = rgb(0, 0, 0);
+//     button2.style.backgroundColor = rgb(255, 0, 0);
+//     button3.style.backgroundColor = rgb(0, 255, 0);
+//     button4.style.backgroundColor = rgb(0, 0, 255);
+// }
+
+function geraCorInicial() {
+    const pixels = document.querySelectorAll('.um, .dois, .tres, .quatro');
+
+    for (let index = 0; index < pixels.length; index += 1) {
+        const pixel = pixels[index];
+        const corAtual = window.getComputedStyle(pixel).getPropertyValue('background-color');
+    if (corAtual === 'rgb(0, 0, 0)') {
+        pixel.style.backgroundColor = 'rgb(0, 0, 0)';
+    }
+    if (corAtual === 'rgb(255, 0, 0)') {
+        pixel.style.backgroundColor = 'rgb(255, 0, 0)';
+    }
+    if (corAtual === 'rgb(0, 255, 0)') {
+        pixel.style.backgroundColor = 'rgb(0, 255, 0)';
+    }
+    if (corAtual === 'rgb(0, 0, 255)') {
+        pixel.style.backgroundColor = 'rgb(0, 0, 255)';
+}
+    }
+}
+geraCorInicial();
+// const corModel = document.querySelector('#pixel-board');
+// corModel.addEventListener('click', function() {
+// geraCorInicial();
+// });
+
 
 function gerarCorAleatoria() {
     let red = Math.floor(Math.random() * 255);
@@ -85,7 +120,7 @@ for (let index = 0; index < capturaCores.length; index += 1) {
 function corInicial () {
 let paleta = document.querySelectorAll('.um.dois.tres.quatro');
     for (let index = 0; index < paleta.length; index += 1) {
-    if (window.getComputedStyle(paleta[index]).backgroundColor === 'rgb(0, 0, 0)') {
+    if (window.getComputedStyle(paleta[index]).backgroundColor !== 'rgb(0, 0, 0)') {
         paleta[index].classList.add('selected');
 
 } else {
@@ -95,7 +130,8 @@ let paleta = document.querySelectorAll('.um.dois.tres.quatro');
 }
 document.querySelector('.um').classList.add('selected');
 document.addEventListener('DOMContentLoaded', function() {
-corInicial();
+    geraCorInicial();
+    corInicial();
 });
 
 function select (event) {
@@ -111,12 +147,6 @@ function select (event) {
     for (let index = 0; index < botoes.length; index += 1) {
   botoes[index].addEventListener('click', select)
   }
-
-document.addEventListener('click', function(event) {
-if (event.target.matches('.button')) {
-    select(event);
-    }
- });
 
 function selectPixel (event) {
     const pixel = event.target;
@@ -139,16 +169,16 @@ if (event.target.matches('.button')) {
  });
 
 let colorSelec = document.querySelectorAll('.color');
-let pixelSelec = document.querySelectorAll('#pixel-board .pixel');
+let pixelSelec = document.querySelectorAll('.pixel');
 
 function pickColor(event) {
-  let selectedColor = document.querySelector('.selected');
+    let selectedColor = document.querySelector('.selected');
   selectedColor.classList.remove('selected');
   event.target.classList.add('selected');
 }
 
 function colorPixel(event) {
-  let selectedColor = document.querySelector('.selected').style.backgroundColor;
+    let selectedColor = document.querySelector('.selected').style.backgroundColor;
   event.target.style.backgroundColor = selectedColor;
 }
 
@@ -171,5 +201,6 @@ const clear = document.querySelector('#clear-board');
 clear.addEventListener('click', function() {
 pixelWhite();
 });
+
 
 }
