@@ -228,7 +228,7 @@ clear.addEventListener('click', function() {
 pixelWhite();
 });
 
-// Requisito 13
+// Requisito 13 (Crie um input que permita à pessoa usuária preencher um novo tamanho para o quadro de pixels)
 let boardSize = document.querySelector('#board-size');
 function pixelInicial() {
     boardSize.value = 5;
@@ -271,7 +271,7 @@ function paintPixel() {
     let corSelecionada = document.querySelector('.selected').style.backgroundColor;
     this.style.backgroundColor = corSelecionada;
 }
-
+// Requisito 14 (Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels)
 function limitSquare(size) {
     const minSize = 5;
     const maxSize = 50;
