@@ -106,9 +106,9 @@ for (let index = 0; index < capturaCores.length; index += 1) {
     return cores;
 }
 // Requisito 6 (Adicione à página um quadro contendo 25 pixels)
-const pixelBoard = document.getElementById('pixel-board');
+let pixelBoard = document.getElementById('pixel-board');
 for (let index = 0; index < 25; index++) {
-    const pixel = document.createElement('div');
+    let pixel = document.createElement('div');
     pixel.classList.add('pixel');
     pixelBoard.appendChild(pixel);
 }
@@ -229,7 +229,7 @@ pixelWhite();
 });
 
 // Requisito 13
-const boardSize = document.querySelector('#board-size');
+let boardSize = document.querySelector('#board-size');
 function pixelInicial() {
     boardSize.value = 5;
    changeSize();
@@ -239,19 +239,21 @@ document.addEventListener('DOMContentLoaded', function() {
     pixelInicial();
 });
 
-const buttonSize = document.getElementById('generate-board');
+let buttonSize = document.getElementById('generate-board');
 buttonSize.addEventListener('click', changeSize);
 
 function changeSize() {
-    const boardValor = boardSize.value;
+    let boardValor = boardSize.value;
     if (boardValor === '') {
         alert('Board inválido!');
         return;
     }
 
+    boardValor = limitSquare(boardValor);
+
     pixelBoard.innerHTML = '';
 for (let index = 0; index < boardValor * boardValor; index++) {
-    const pixel = document.createElement('div');
+    let pixel = document.createElement('div');
     pixel.classList.add('pixel');
     pixelBoard.appendChild(pixel);
     pixel.addEventListener('click', paintPixel);
@@ -266,7 +268,7 @@ function ajustaPixel(boardValor) {
 }
 
 function paintPixel() {
-    const corSelecionada = document.querySelector('.selected').style.backgroundColor;
+    let corSelecionada = document.querySelector('.selected').style.backgroundColor;
     this.style.backgroundColor = corSelecionada;
 }
 
@@ -275,7 +277,7 @@ function limitSquare(size) {
     const maxSize = 50;
     if (size < minSize) {
         size = minSize;
-    } else if (size < maxSize) {
+    } else if (size > maxSize) {
         size = maxSize;
 }
 return size;
