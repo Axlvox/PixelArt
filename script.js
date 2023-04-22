@@ -1,5 +1,5 @@
-window.onload = function(){
-    
+
+
 const cor = document.querySelectorAll('.um, .dois, .tres, .quatro');
 let button1 = document.getElementsByClassName('um');
 let button2 = document.getElementsByClassName('dois');
@@ -27,6 +27,7 @@ function geraCorInicial() {
     }
 }
 geraCorInicial();
+
 
 function gerarCorAleatoria() {
     let red = Math.floor(Math.random() * 255);
@@ -143,6 +144,7 @@ function select (event) {
     for (let index = 0; index < botoes.length; index += 1) {
   botoes[index].addEventListener('click', select)
   }
+  window.onload = function(){
 // Requisito 10 (Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores)
 function selectPixel (event) {
     const pixel = event.target;
@@ -182,7 +184,7 @@ if (event.target.matches('.button')) {
     selectPixel(event);
     }
  });
-
+}
  function cookiePixel () {
     const capturaPixel = document.querySelectorAll('.pixel');
     let pixelz = [];
@@ -226,10 +228,59 @@ clear.addEventListener('click', function() {
 pixelWhite();
 });
 
-
+// Requisito 13
+const boardSize = document.querySelector('#board-size');
+function pixelInicial() {
+    boardSize.value = 5;
+   changeSize();
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    pixelInicial();
+});
 
+const buttonSize = document.getElementById('generate-board');
+buttonSize.addEventListener('click', changeSize);
 
+function changeSize() {
+    const boardValor = boardSize.value;
+    if (boardValor === '') {
+        alert('Board inválido!');
+        return;
+    }
 
+    pixelBoard.innerHTML = '';
+for (let index = 0; index < boardValor * boardValor; index++) {
+    const pixel = document.createElement('div');
+    pixel.classList.add('pixel');
+    pixelBoard.appendChild(pixel);
+    pixel.addEventListener('click', paintPixel);
+}
+ajustaPixel(boardValor);
+}
 
+function ajustaPixel(boardValor) {
+    pixelBoard.style.gridTemplateColumns = `repeat(${boardValor}, 1fr)`;
+    pixelBoard.style.gridTemplateRows = `repeat(${boardValor}, 1fr)`;
+    pixelBoard.style.gridAutoRows = `calc(100% / ${boardValor})`;
+}
+
+function paintPixel() {
+    const corSelecionada = document.querySelector('.selected').style.backgroundColor;
+    this.style.backgroundColor = corSelecionada;
+}
+
+function limitSquare(size) {
+    const minSize = 5;
+    const maxSize = 50;
+    if (size < minSize) {
+        size = minSize;
+    } else if (size < maxSize) {
+        size = maxSize;
+}
+return size;
+}
+
+const takeSize = document.querySelector('#board-size');
+const pixelSize = parseInt(takeSize.value);
+const sizePixel = limitSquare(pixelSize);

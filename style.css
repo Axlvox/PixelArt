@@ -37,10 +37,10 @@
  }
 
 #pixel-board {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
-    width: 300px;
-    height: 280px;
+    width: 50px;
+    height: 100%;
     margin-top: 10px;
 }
 /* Requisito 7 (Faça com que cada pixel do quadro tenha largura e altura de 40 pixels e borda preta de 1 pixel de espessura)*/
@@ -50,5 +50,5 @@
     height: 40px;
     width: 40px;
     border: 1px solid black;
-    margin: 5px;
+    margin: 0px;
  }
