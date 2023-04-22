@@ -231,13 +231,26 @@ pixelWhite();
 // Requisito 13 (Crie um input que permita à pessoa usuária preencher um novo tamanho para o quadro de pixels)
 let boardSize = document.querySelector('#board-size');
 function pixelInicial() {
+    const saveBoardSize = localStorage.getItem('boardSize');
+    if (saveBoardSize) {
+        boardSize.value = recupBoardSize;
+    } else {
     boardSize.value = 5;
+    }
    changeSize();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    pixelInicial();
-});
+function recupBoardSize() {
+    let size = localStorage.getItem('boardSize');
+    if (size) {
+        boardSize.value = size;
+        changeSize();
+    } else {
+        pixelInicial();
+    }
+    }
+
+document.addEventListener('DOMContentLoaded', recupBoardSize);
 
 let buttonSize = document.getElementById('generate-board');
 buttonSize.addEventListener('click', changeSize);
@@ -250,6 +263,8 @@ function changeSize() {
     }
 
     boardValor = limitSquare(boardValor);
+
+    localStorage.setItem('boardSize', boardValor);
 
     pixelBoard.innerHTML = '';
 for (let index = 0; index < boardValor * boardValor; index++) {
