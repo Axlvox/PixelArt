@@ -7,6 +7,7 @@
     width: 80px;
     border: 1px solid black;
     margin: 5px;
+    position: relative;
 }
 
 .dois {
@@ -16,6 +17,7 @@
     width: 80px;
     border: 1px solid black;
     margin: 5px;
+    position: relative;
 }
 
 .tres {
@@ -25,6 +27,7 @@
     width: 80px;
     border: 1px solid black;
     margin: 5px;
+    position: relative;
  }
 
  .quatro {
@@ -34,14 +37,19 @@
     width: 80px;
     border: 1px solid black;
     margin: 5px;
+    position: relative;
  }
 
 #pixel-board {
     display: grid;
     flex-wrap: wrap;
+    position: absolute;
+    top: 200px;
     width: 50px;
-    height: 100%;
+    height: 10%;
     margin-top: 10px;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
 }
 /* Requisito 7 (Faça com que cada pixel do quadro tenha largura e altura de 40 pixels e borda preta de 1 pixel de espessura)*/
  .pixel {
@@ -52,3 +60,131 @@
     border: 1px solid black;
     margin: 0px;
  }
+
+ #button-random-color {
+    position: relative;
+    top: 420px;
+    left: -300px;
+    z-index: 1; 
+    }
+
+/* #title {
+    position: absolute;
+    top: -3px;
+    left: 90px;
+    z-index: 5;
+}
+
+#generate-board {
+    position: relative;
+    top: 550px;
+    left: 230px;
+    z-index: 1;
+    }
+
+#board-size {
+    position: relative;
+    top: 550px;
+    left: 230px;
+    width:70px;
+    padding: 10;
+    border-color: gray;
+    z-index: 1;
+    }
+
+#clear-board {
+    position: relative;
+    top: 550px;
+    left: 190px;
+    z-index: 7;
+    }
+
+#color-palette {
+    position: relative;
+    top: 80px;
+    left: 20px;
+    z-index: 2; 
+}
+
+
+.box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url('wall.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    } 
+.glass {
+        width: 250px;
+        height: 50px;
+        backdrop-filter: blur(5px);
+        border-radius: 30px;
+        background: linear-gradient(100deg, rgba(0,0,0,.2),rgba(0,0,0,.2));
+        box-shadow: 0 10px 26px 0 rgba(0,0,0,.70);
+        position: absolute;
+        top: 10px;
+        left: 70px;
+        z-index: 1;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: url('hands.jpg');
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        top: 20px;
+        left: 420px;
+    } 
+
+    .brush {
+        width: 80px;
+        height: 80px;
+        border-radius: 40%;
+      }
+
+      .block{
+        position: relative;
+        margin: 10% auto 0;
+        width: 50px;
+        height: 400px;
+        border-radius: 40%;
+        background: linear-gradient(0deg , black, rgb(64, 64, 64));
+      }
+
+      .glow::before , .glow::after{
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        background: linear-gradient(45deg, rgb(255, 0, 0), rgb(255, 165, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 0, 255), rgb(0, 255, 255), rgb(238, 130, 238));
+        background-size: 500%;
+        width: calc(100% + 1px);
+        height: calc(100% + 1px);
+        z-index: 0;
+        animation: animate 20s linear infinite;
+        border-radius: 60%;
+    }
+
+    @keyframes animate{
+        0%{
+            background-position: 0 0;
+        }
+        50%{
+            background-position: 200% 0;
+        }
+        100%{
+            background-position: 0 0;
+        }
+    }
+
+    .glow::after{
+        filter: blur(10px);
+        opacity: 0.99;
+    } 
+  */

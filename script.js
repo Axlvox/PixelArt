@@ -1,5 +1,4 @@
 
-
 const cor = document.querySelectorAll('.um, .dois, .tres, .quatro');
 let button1 = document.getElementsByClassName('um');
 let button2 = document.getElementsByClassName('dois');
@@ -105,6 +104,7 @@ for (let index = 0; index < capturaCores.length; index += 1) {
 }
     return cores;
 }
+
 // Requisito 6 (Adicione à página um quadro contendo 25 pixels)
 let pixelBoard = document.getElementById('pixel-board');
 for (let index = 0; index < 25; index++) {
@@ -235,7 +235,7 @@ function pixelInicial() {
     if (saveBoardSize) {
         boardSize.value = recupBoardSize;
     } else {
-    boardSize.value = 5;
+    boardSize.value =  5;
     }
    changeSize();
 }
@@ -254,15 +254,18 @@ document.addEventListener('DOMContentLoaded', recupBoardSize);
 
 let buttonSize = document.getElementById('generate-board');
 buttonSize.addEventListener('click', changeSize);
-
+// Requisito 14 (Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels)
+// Requisito 15 (Crie uma função para manter o tamanho novo do board ao recarregar a página)
 function changeSize() {
     let boardValor = boardSize.value;
-    if (boardValor === '') {
+    if (boardValor < 5) {
+        boardValor = 5;
+    } else if (boardValor > 50) {
+        boardValor = 50
+    } else {
         alert('Board inválido!');
-        return;
+       
     }
-
-    boardValor = limitSquare(boardValor);
 
     localStorage.setItem('boardSize', boardValor);
 
@@ -273,6 +276,7 @@ for (let index = 0; index < boardValor * boardValor; index++) {
     pixelBoard.appendChild(pixel);
     pixel.addEventListener('click', paintPixel);
 }
+
 ajustaPixel(boardValor);
 }
 
@@ -286,18 +290,3 @@ function paintPixel() {
     let corSelecionada = document.querySelector('.selected').style.backgroundColor;
     this.style.backgroundColor = corSelecionada;
 }
-// Requisito 14 (Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels)
-function limitSquare(size) {
-    const minSize = 5;
-    const maxSize = 50;
-    if (size < minSize) {
-        size = minSize;
-    } else if (size > maxSize) {
-        size = maxSize;
-}
-return size;
-}
-
-const takeSize = document.querySelector('#board-size');
-const pixelSize = parseInt(takeSize.value);
-const sizePixel = limitSquare(pixelSize);
